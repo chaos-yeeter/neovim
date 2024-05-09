@@ -1,62 +1,45 @@
 local utils = require("utils")
 local builtin = require('telescope.builtin')
 local cmp = require("cmp")
-local mason_lsp = require("mason-lspconfig")
-
-require("mason").setup()
-
-mason_lsp.setup()
 
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			require('luasnip').lsp_expand(args.body)
-		end,
-	},
-	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
-	},
-	mapping = cmp.mapping.preset.insert({
-		['<C-b>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-j>'] = cmp.mapping.select_next_item(),
-		['<C-k>'] = cmp.mapping.select_prev_item(),
-		['<Esc>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
-	}),
-	sources = cmp.config.sources({
-		{ name = 'luasnip' },
-		{ name = 'nvim_lsp' },
-	}, {
-		{ name = 'buffer' },
-	})
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<Esc>'] = cmp.mapping.abort(),
+        ['<TAB>'] = cmp.mapping.confirm({ select = true }),
+    }),
+    sources = cmp.config.sources({
+        { name = 'luasnip' },
+        { name = 'nvim_lsp' },
+    }, {
+        { name = 'buffer' },
+    })
 })
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require("cmp_nvim_lsp").setup {
-	sources = {
-		{ name = "luasnip" },
-		{ name = "nvim_lsp" },
-	}
-}
-
-require("mason-lspconfig").setup_handlers {
-	function (server_name)
-		require("lspconfig")[server_name].setup {
-			capabilities = capabilities
-		}
-	end
-}
-
-require('lspconfig').gopls.setup({
-    settings = {
-        gopls = {
-            gofumpt = true
-        }
+    sources = {
+        { name = "luasnip" },
+        { name = "nvim_lsp" },
     }
-})
+}
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+require("lspconfig").pyright.setup { capabilities = capabilities }
+require("lspconfig").ruff_lsp.setup{ capabilities = capabilities }
+require("lspconfig").taplo.setup{ capabilities = capabilities }
+require("lspconfig").lua_ls.setup{ capabilities = capabilities }
 
 -- setup keybindings
 local lsp_trigger = '<leader>l'

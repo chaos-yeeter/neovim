@@ -31,5 +31,9 @@ Utils.set("expandtab", true)
 -- disable mouse
 Utils.set("mouse", "")
 
--- Enable sign column
+-- enable sign column
 Utils.set("signcolumn", "yes")
+
+-- add j/k movements that are bigger than 1 line to jumplist
+Utils.map("n", "j", [[v:count ? (v:count > 1 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
+Utils.map("n", "k", [[v:count ? (v:count > 1 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })

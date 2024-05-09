@@ -34,3 +34,9 @@ Utils.map("n", "<leader>Y", "\"+Y")
 
 -- open gitui (needs gitui to be installed)
 Utils.map("n", "<leader>gg", ":silent terminal gitui<CR>:startinsert<CR>")
+
+-- use Ctrl + h/j/k/l for window navigation
+Utils.map("n", "<C-h>", ":wincmd h<CR>")
+Utils.map("n", "<C-j>", ":wincmd j<CR>")
+Utils.map("n", "<C-k>", ":wincmd k<CR>")
+Utils.map("n", "<C-l>", ":wincmd l<CR>")

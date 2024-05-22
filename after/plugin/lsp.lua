@@ -40,6 +40,13 @@ require("lspconfig").pyright.setup { capabilities = capabilities }
 require("lspconfig").ruff_lsp.setup{ capabilities = capabilities }
 require("lspconfig").taplo.setup{ capabilities = capabilities }
 require("lspconfig").lua_ls.setup{ capabilities = capabilities }
+require("lspconfig").nil_ls.setup{ capabilities = capabilities }
+require("lspconfig").tsserver.setup{ capabilities = capabilities }
+
+-- html/css/eslint setup
+local capabilities_html = vim.lsp.protocol.make_client_capabilities()
+capabilities_html.textDocument.completion.completionItem.snippetSupport = true
+require("lspconfig").html.setup { capabilities = capabilities_html }
 
 -- setup keybindings
 local lsp_trigger = '<leader>l'

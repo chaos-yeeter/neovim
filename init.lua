@@ -20,6 +20,3 @@ vim.opt.rtp:prepend(lazypath)
 
 -- load files from lua/plugins
 require("lazy").setup("plugins")
-
--- load custom auto commands
-require("auto-commands")

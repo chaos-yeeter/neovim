@@ -10,8 +10,9 @@ vim.g.mapleader = " "
 -- <leader>w to write file
 Utils.map("n", "<leader>w", ":silent write<CR>")
 
--- <leader>q to quit
+-- <leader>q to quit window, <leader>Q to quit neovim
 Utils.map("n", "<leader>q", ":silent quit<CR>")
+Utils.map("n", "<leader>Q", ":silent quitall<CR>")
 
 -- <leader>c to close current buffer & reopen last closed buffer in it's place
 Utils.map("n", "<leader>c", ":silent bp<bar>sp<bar>bn<bar>bd<CR>")

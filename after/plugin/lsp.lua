@@ -20,33 +20,48 @@ cmp.setup({
         ['<Esc>'] = cmp.mapping.abort(),
         ['<TAB>'] = cmp.mapping.confirm({ select = true }),
     }),
-    sources = cmp.config.sources({
-        { name = 'luasnip' },
-        { name = 'nvim_lsp' },
-    }, {
-        { name = 'buffer' },
-    })
+    sources = cmp.config.sources(
+        {
+            { name = 'nvim_lsp' },
+            { name = 'luasnip' },
+            {
+                name = "path",
+                option = {
+                    trailing_slash = true,
+                    get_cwd = function ()
+                        return vim.fn.resolve(vim.fn.getcwd())
+                    end,
+                },
+            },
+            { name = "buffer" },
+        }
+    )
 })
 
 require("cmp_nvim_lsp").setup {
     sources = {
-        { name = "luasnip" },
         { name = "nvim_lsp" },
+        { name = "luasnip" },
     }
 }
 
+local handlers = {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+}
+
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require("lspconfig").pyright.setup { capabilities = capabilities }
+require("lspconfig").pyright.setup { capabilities = capabilities, handlers = handlers }
 require("lspconfig").ruff_lsp.setup{ capabilities = capabilities }
-require("lspconfig").taplo.setup{ capabilities = capabilities }
-require("lspconfig").lua_ls.setup{ capabilities = capabilities }
-require("lspconfig").nil_ls.setup{ capabilities = capabilities }
-require("lspconfig").tsserver.setup{ capabilities = capabilities }
+require("lspconfig").taplo.setup{ capabilities = capabilities, handlers = handlers }
+require("lspconfig").lua_ls.setup{ capabilities = capabilities, handlers = handlers }
+require("lspconfig").nil_ls.setup{ capabilities = capabilities, handlers = handlers }
+require("lspconfig").tsserver.setup{ capabilities = capabilities, handlers = handlers }
 
 -- html/css/eslint setup
 local capabilities_html = vim.lsp.protocol.make_client_capabilities()
 capabilities_html.textDocument.completion.completionItem.snippetSupport = true
-require("lspconfig").html.setup { capabilities = capabilities_html }
+require("lspconfig").html.setup { capabilities = capabilities_html, handlers = handlers }
 
 -- setup keybindings
 local lsp_trigger = '<leader>l'

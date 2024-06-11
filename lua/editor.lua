@@ -17,9 +17,6 @@ Utils.set("swapfile", false)
 -- don't show current mode (already shown in status line)
 Utils.set("showmode", false)
 
--- hide command
-Utils.set("cmdheight", 0)
-
 -- highligh current line
 Utils.set("cursorline", true)
 

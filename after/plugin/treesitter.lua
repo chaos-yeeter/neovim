@@ -4,10 +4,10 @@ require'nvim-treesitter.configs'.setup {
     auto_install = true,
     highlight = {
         enable = true,
+        disable = { "python" },
         additional_vim_regex_highlighting = false,
     },
     indent = {
-        enable = true,
-        disable = { "python", "javascript" }
-    }
+        enable = false,
+    },
 }

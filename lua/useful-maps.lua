@@ -15,7 +15,7 @@ Utils.map("n", "<leader>q", ":silent quit<CR>")
 Utils.map("n", "<leader>Q", ":silent quitall<CR>")
 
 -- <leader>c to close current buffer & reopen last closed buffer in it's place
-Utils.map("n", "<leader>c", ":silent bp<bar>sp<bar>bn<bar>bd<CR>")
+Utils.map("n", "<leader>c", ":silent bp | sp | bn | bd<CR>")
 
 -- keep cursor in the middle while scrolling half page
 Utils.map("n", "<C-d>", "<C-d>zz")
@@ -34,7 +34,7 @@ Utils.map("v", "<leader>y", "\"+y")
 Utils.map("n", "<leader>Y", "\"+Y")
 
 -- open gitui (needs gitui to be installed)
-Utils.map("n", "<leader>gg", ":silent terminal gitui<CR>:startinsert<CR>")
+Utils.map("n", "<leader>gg", ":silent tabnew | silent terminal gitui<CR>:startinsert<CR>")
 
 -- use Ctrl + h/j/k/l for window navigation
 Utils.map("n", "<C-h>", ":wincmd h<CR>")

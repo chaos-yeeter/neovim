@@ -41,3 +41,6 @@ Utils.map("n", "<C-h>", ":wincmd h<CR>")
 Utils.map("n", "<C-j>", ":wincmd j<CR>")
 Utils.map("n", "<C-k>", ":wincmd k<CR>")
 Utils.map("n", "<C-l>", ":wincmd l<CR>")
+
+-- open file in new tab (zoom like tmux). quit to get get out of zoom
+Utils.map("n", "<leader>zz", ":tabnew %<CR>")

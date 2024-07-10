@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     desc = "Format python file on save",
     callback = function()
         local fileName = vim.api.nvim_buf_get_name(0)
-        vim.cmd("!prettier --write " .. fileName)
+        vim.cmd("!biome format --write " .. fileName)
     end,
     group = format_autocmd_group,
 })

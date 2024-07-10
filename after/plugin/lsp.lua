@@ -51,12 +51,13 @@ local handlers = {
 }
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require("lspconfig").pyright.setup { capabilities = capabilities, handlers = handlers }
-require("lspconfig").ruff_lsp.setup{ capabilities = capabilities }
-require("lspconfig").taplo.setup{ capabilities = capabilities, handlers = handlers }
-require("lspconfig").lua_ls.setup{ capabilities = capabilities, handlers = handlers }
-require("lspconfig").nil_ls.setup{ capabilities = capabilities, handlers = handlers }
-require("lspconfig").tsserver.setup{ capabilities = capabilities, handlers = handlers }
+local lsp_config = require("lspconfig")
+lsp_config.pyright.setup { capabilities = capabilities, handlers = handlers }
+lsp_config.ruff_lsp.setup{ capabilities = capabilities }
+lsp_config.taplo.setup{ capabilities = capabilities, handlers = handlers }
+lsp_config.lua_ls.setup{ capabilities = capabilities, handlers = handlers }
+lsp_config.nil_ls.setup{ capabilities = capabilities, handlers = handlers }
+lsp_config.tsserver.setup{ capabilities = capabilities, handlers = handlers }
 
 -- html/css/eslint setup
 local capabilities_html = vim.lsp.protocol.make_client_capabilities()

@@ -50,6 +50,7 @@ local handlers = {
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
 }
 
+-- ref: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp_config = require("lspconfig")
 lsp_config.pyright.setup { capabilities = capabilities, handlers = handlers }
@@ -60,6 +61,7 @@ lsp_config.nil_ls.setup{ capabilities = capabilities, handlers = handlers }
 lsp_config.tsserver.setup{ capabilities = capabilities, handlers = handlers }
 lsp_config.biome.setup{ capabilities = capabilities }
 lsp_config.tailwindcss.setup{ capabilities=capabilities, handlers=handlers }
+lsp_config.yamlls.setup{ capabilities=capabilities, handlers=handlers }
 
 -- html/css/eslint setup
 local capabilities_html = vim.lsp.protocol.make_client_capabilities()

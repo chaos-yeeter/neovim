@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     pattern = { "*.tsx", "*.ts", "*.jsx", "*.js", "*.html", "*.css", "*.md", "*.yaml", "*.json" },
-    desc = "Format python file on save",
+    desc = "Format web files on save",
     callback = function()
         local fileName = vim.api.nvim_buf_get_name(0)
         vim.cmd("!biome format --write " .. fileName)

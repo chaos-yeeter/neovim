@@ -58,7 +58,7 @@ lsp_config.ruff_lsp.setup{ capabilities = capabilities }
 lsp_config.taplo.setup{ capabilities = capabilities, handlers = handlers }
 lsp_config.lua_ls.setup{ capabilities = capabilities, handlers = handlers }
 lsp_config.nil_ls.setup{ capabilities = capabilities, handlers = handlers }
-lsp_config.tsserver.setup{ capabilities = capabilities, handlers = handlers }
+lsp_config.ts_ls.setup{ capabilities = capabilities, handlers = handlers }
 lsp_config.biome.setup{ capabilities = capabilities }
 lsp_config.tailwindcss.setup{ capabilities=capabilities, handlers=handlers }
 lsp_config.yamlls.setup{ capabilities=capabilities, handlers=handlers }

@@ -23,3 +23,13 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     end,
     group = format_autocmd_group,
 })
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    pattern = { "*.sql" },
+    desc = "Format SQL files on save",
+    callback = function()
+        local fileName = vim.api.nvim_buf_get_name(0)
+        vim.cmd("!sleek " .. fileName)
+    end,
+    group = format_autocmd_group,
+})

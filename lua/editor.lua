@@ -1,5 +1,3 @@
-local Utils = require("utils")
-
 -- enable relative line numbers
 Utils.set("number", true)
 Utils.set("relativenumber", true)

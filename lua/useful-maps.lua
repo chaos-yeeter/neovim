@@ -1,5 +1,3 @@
-local Utils = require("utils")
-
 -- jk & kj as escape
 Utils.map("i", "jk", "<Esc>")
 Utils.map("i", "kj", "<Esc>")
@@ -26,12 +24,12 @@ Utils.map("n", "n", "nzz")
 Utils.map("n", "N", "Nzz")
 
 -- retain copied word after pasting on selection
-Utils.map("x", "<leader>p", "\"_dP")
+Utils.map("x", "<leader>p", '"_dP')
 
 -- copy to system clipboard
-Utils.map("n", "<leader>y", "\"+y")
-Utils.map("v", "<leader>y", "\"+y")
-Utils.map("n", "<leader>Y", "\"+Y")
+Utils.map("n", "<leader>y", '"+y')
+Utils.map("v", "<leader>y", '"+y')
+Utils.map("n", "<leader>Y", '"+Y')
 
 -- open gitui (needs gitui to be installed)
 Utils.map("n", "<leader>gg", ":silent tabnew | silent terminal gitui<CR>:startinsert<CR>")

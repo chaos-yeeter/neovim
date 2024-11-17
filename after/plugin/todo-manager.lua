@@ -1,7 +1,6 @@
-local Utils = require("utils")
 local todo_comments = require("todo-comments")
 
-todo_comments.setup {}
+todo_comments.setup({})
 
 Utils.map("n", "]t", require("todo-comments").jump_next, { desc = "Next todo comment" })
 Utils.map("n", "[t", require("todo-comments").jump_prev, { desc = "Previous todo comment" })

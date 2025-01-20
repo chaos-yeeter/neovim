@@ -13,6 +13,9 @@ telescope.setup({
 				return { "--hidden" }
 			end,
 		},
+		lsp_dynamic_workspace_symbols = {
+			file_ignore_patterns = { ".cache" },
+		},
 	},
 })
 

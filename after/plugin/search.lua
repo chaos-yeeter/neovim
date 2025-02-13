@@ -1,8 +1,15 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
+local open_with_trouble = require("trouble.sources.telescope").open
 
 -- show hidden files
 telescope.setup({
+	defaults = {
+		mappings = {
+			i = { ["<c-t>"] = open_with_trouble },
+			n = { ["<c-t>"] = open_with_trouble },
+		},
+	},
 	pickers = {
 		find_files = {
 			hidden = true,

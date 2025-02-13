@@ -67,13 +67,8 @@ require("lspconfig").html.setup({ capabilities = capabilities_html, handlers = h
 
 -- setup keybindings
 local lsp_trigger = "<leader>l"
-Utils.map("n", string.format("%sd", lsp_trigger), builtin.lsp_definitions)
 Utils.map("n", string.format("%sa", lsp_trigger), vim.lsp.buf.code_action)
-Utils.map("n", string.format("%sr", lsp_trigger), builtin.lsp_references)
-Utils.map("n", string.format("%ss", lsp_trigger), builtin.lsp_dynamic_workspace_symbols)
-Utils.map("n", string.format("%sD", lsp_trigger), function()
-	builtin.diagnostics({ bufnr = 0 })
-end)
+Utils.map("n", string.format("%sS", lsp_trigger), builtin.lsp_dynamic_workspace_symbols)
 Utils.map("n", string.format("%sR", lsp_trigger), vim.lsp.buf.rename)
 Utils.map("n", "K", vim.lsp.buf.hover)
 Utils.map("n", "<C-s>", vim.lsp.buf.signature_help)

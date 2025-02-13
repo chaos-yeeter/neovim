@@ -13,7 +13,7 @@ Utils.map("n", "<leader>q", ":silent quit<CR>")
 Utils.map("n", "<leader>Q", ":silent quitall<CR>")
 
 -- <leader>c to close current buffer & reopen last closed buffer in it's place
-Utils.map("n", "<leader>c", ":silent bp | sp | bn | bd<CR>")
+Utils.map("n", "<leader>c", ":silent bp | sp | bn | bd!<CR>")
 
 -- keep cursor in the middle while scrolling half page
 Utils.map("n", "<C-d>", "<C-d>zz")

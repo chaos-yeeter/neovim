@@ -20,4 +20,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- load files from lua/plugins
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+	change_detection = {
+		notify = false,
+	},
+})

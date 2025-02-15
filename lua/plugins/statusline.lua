@@ -10,6 +10,8 @@ return {
 						path = 1,
 					},
 				},
+				lualine_x = { "filetype" },
+				lualine_y = {},
 			},
 		})
 	end,

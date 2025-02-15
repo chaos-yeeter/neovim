@@ -4,6 +4,14 @@ local session_autocmd_group = vim.api.nvim_create_augroup("AutoSessionLoader", {
 -- ref: https://neovim.io/doc/user/options.html#'sessionoptions'
 Utils.set("sessionoptions", "buffers,curdir,folds,resize,tabpages,winsize,options")
 
+-- manage session files
+Utils.map(
+	"n",
+	"<leader>ss",
+	string.format("<cmd>Oil --float %s<cr>", session_dir),
+	{ desc = "Open sessions directory" }
+)
+
 local function exists(path)
 	local success, err = os.rename(path, path)
 	return not err and success

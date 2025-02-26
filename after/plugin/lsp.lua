@@ -1,10 +1,14 @@
 local builtin = require("telescope.builtin")
 local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 cmp.setup({
+	completion = {
+		completeopt = "menu,menuone,preview,noselect",
+	},
 	snippet = {
 		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	window = {
@@ -16,8 +20,19 @@ cmp.setup({
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		["<C-j>"] = cmp.mapping.select_next_item(),
 		["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<Esc>"] = cmp.mapping.abort(),
-		["<TAB>"] = cmp.mapping.confirm({ select = true }),
+		["<C-c>"] = cmp.mapping.abort(),
+		["<C-l>"] = cmp.mapping(function(_)
+			if luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				cmp.confirm({ select = true })
+			end
+		end, { "i", "s" }),
+		["<C-h>"] = cmp.mapping(function(_)
+			if luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			end
+		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },

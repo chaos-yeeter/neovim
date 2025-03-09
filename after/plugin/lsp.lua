@@ -67,8 +67,18 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local lsp_config = require("lspconfig")
-lsp_config.pyright.setup({ capabilities = capabilities, handlers = handlers })
-lsp_config.ruff_lsp.setup({ capabilities = capabilities })
+lsp_config.basedpyright.setup({
+	capabilities = capabilities,
+	handlers = handlers,
+	settings = {
+		basedpyright = {
+			analysis = {
+				diagnosticMode = "workspace",
+			},
+		},
+	},
+})
+lsp_config.ruff.setup({ capabilities = capabilities })
 lsp_config.taplo.setup({ capabilities = capabilities, handlers = handlers })
 lsp_config.lua_ls.setup({ capabilities = capabilities, handlers = handlers })
 lsp_config.nil_ls.setup({ capabilities = capabilities, handlers = handlers })

@@ -64,6 +64,8 @@ local handlers = {
 
 -- ref: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 local lsp_config = require("lspconfig")
 lsp_config.pyright.setup({ capabilities = capabilities, handlers = handlers })
 lsp_config.ruff_lsp.setup({ capabilities = capabilities })
@@ -74,11 +76,10 @@ lsp_config.ts_ls.setup({ capabilities = capabilities, handlers = handlers })
 lsp_config.biome.setup({ capabilities = capabilities })
 lsp_config.tailwindcss.setup({ capabilities = capabilities, handlers = handlers })
 lsp_config.yamlls.setup({ capabilities = capabilities, handlers = handlers })
-
--- html/css/eslint setup
-local capabilities_html = vim.lsp.protocol.make_client_capabilities()
-capabilities_html.textDocument.completion.completionItem.snippetSupport = true
-require("lspconfig").html.setup({ capabilities = capabilities_html, handlers = handlers })
+lsp_config.html.setup({ capabilities = capabilities, handlers = handlers })
+lsp_config.cssls.setup({ capabilities = capabilities, handlers = handlers })
+lsp_config.eslint.setup({ capabilities = capabilities, handlers = handlers })
+lsp_config.jsonls.setup({ capabilities = capabilities, handlers = handlers })
 
 -- setup keybindings
 local lsp_trigger = "<leader>l"

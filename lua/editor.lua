@@ -36,3 +36,7 @@ Utils.map("n", "k", [[v:count ? (v:count > 1 ? "m'" . v:count : '') . 'k' : 'gk'
 -- split below for vertical & to right for horizontal
 Utils.set("splitbelow", true)
 Utils.set("splitright", true)
+
+-- add guides
+Utils.set("textwidth", 100)
+Utils.set("colorcolumn", "+1")

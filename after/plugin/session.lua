@@ -5,21 +5,23 @@ local session_autocmd_group = vim.api.nvim_create_augroup("AutoSessionLoader", {
 Utils.set("sessionoptions", "buffers,curdir,folds,resize,tabpages,winsize,options")
 
 -- manage session files
-Utils.map(
-	"n",
-	"<leader>ss",
-	string.format("<cmd>Oil --float %s<cr>", session_dir),
-	{ desc = "Open sessions directory" }
-)
+Utils.map("n", "<leader>ss", function()
+	vim.g.CUSTOM_SAVE_SESSION_FLAG = false
+	vim.cmd(string.format("Oil--float %s", session_dir))
+end, { desc = "Open sessions directory" })
 
 local function exists(path)
 	local success, err = os.rename(path, path)
 	return not err and success
 end
 
+local function should_save_session()
+	return vim.g.CUSTOM_SAVE_SESSION_FLAG
+end
+
 local function create_session()
 	-- do not create session when neovim is called with args e.g. rebase, commit, etc.
-	if next(vim.fn.argv()) ~= nil then
+	if (not should_save_session()) or (next(vim.fn.argv()) ~= nil) then
 		return
 	end
 
@@ -55,6 +57,9 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 		if next(vim.fn.argv()) ~= nil then
 			return
 		end
+
+		-- enable saving sessions
+		vim.g.CUSTOM_SAVE_SESSION_FLAG = true
 
 		local current_working_dirname = string.gmatch(vim.fn.getcwd(), "[%d%a-_]+$")()
 		assert(current_working_dirname, string.format("Invalid current_working_dirname: '%s'", current_working_dirname))

@@ -21,11 +21,16 @@ cmp.setup({
 		["<C-j>"] = cmp.mapping.select_next_item(),
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-c>"] = cmp.mapping.abort(),
+		["<Tab>"] = function(fallback)
+			if cmp.visible() then
+				cmp.confirm({ select = true })
+			else
+				fallback()
+			end
+		end,
 		["<C-l>"] = cmp.mapping(function(_)
 			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
-			else
-				cmp.confirm({ select = true })
 			end
 		end, { "i", "s" }),
 		["<C-h>"] = cmp.mapping(function(_)

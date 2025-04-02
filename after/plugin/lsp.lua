@@ -21,14 +21,11 @@ cmp.setup({
 		["<C-j>"] = cmp.mapping.select_next_item(),
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-c>"] = cmp.mapping.abort(),
-		["<Tab>"] = function(fallback)
+		["<C-l>"] = cmp.mapping(function(_)
 			if cmp.visible() then
 				cmp.confirm({ select = true })
-			else
-				fallback()
+				return
 			end
-		end,
-		["<C-l>"] = cmp.mapping(function(_)
 			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			end
@@ -40,8 +37,8 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "nvim_lsp" },
 		{
 			name = "path",
 			option = {

@@ -38,5 +38,4 @@ Utils.set("splitbelow", true)
 Utils.set("splitright", true)
 
 -- add guides
-Utils.set("textwidth", 100)
-Utils.set("colorcolumn", "+1")
+Utils.set("colorcolumn", "101")

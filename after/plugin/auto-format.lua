@@ -12,6 +12,7 @@ require("conform").setup({
 		html = { "prettierd" },
 		css = { "prettierd" },
 		markdown = { "prettierd" },
+		nix = { "alejandra" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
